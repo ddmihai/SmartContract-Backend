@@ -15,8 +15,12 @@ const contracts_routes_1 = __importDefault(require("./src/routes/contracts.route
 // init app and add the middleware
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
+app.use((0, cors_1.default)({
+    origin: process.env.NODE_ENV === 'production' ? 'XXXXXXXXXXXXXXXXXXXXXXXXXXX' : 'http://localhost:3002',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 // create express sessions
 app.set('trust proxy', 1);
 app.use((0, express_session_1.default)({
@@ -35,7 +39,7 @@ app.use((0, express_session_1.default)({
     }
 }));
 // home route
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.status(200).send('Server online!'));
 app.use('/api/v1', user_routes_1.default);
 app.use('/api/v1', invitation_routes_1.default);
 app.use('/api/v1', contracts_routes_1.default);

@@ -34,6 +34,8 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
             role: role?.name
         };
 
+        req.session.save();
+
         return res.status(200).json({ message: 'Login successful' });
     } catch (error) {
         console.error(error);

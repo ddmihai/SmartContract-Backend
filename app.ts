@@ -12,8 +12,12 @@ config();
 // init app and add the middleware
 const app: Application = express();
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' ? 'XXXXXXXXXXXXXXXXXXXXXXXXXXX' : 'http://localhost:3002',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 
 
 
@@ -38,7 +42,7 @@ app.use(session({
 
 
 // home route
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.status(200).send('Server online!'));
 
 
 app.use('/api/v1', userRouter);

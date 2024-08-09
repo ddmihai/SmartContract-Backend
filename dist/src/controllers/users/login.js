@@ -40,6 +40,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
             email: existingUser.email,
             role: role === null || role === void 0 ? void 0 : role.name
         };
+        req.session.save();
         return res.status(200).json({ message: 'Login successful' });
     }
     catch (error) {
