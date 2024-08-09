@@ -36,7 +36,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
         req.session.save();
 
-        return res.status(200).json({ message: 'Login successful' });
+        return res.status(200).json((req.session as any).user);
     } catch (error) {
         console.error(error);
         next(error);

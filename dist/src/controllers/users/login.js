@@ -41,7 +41,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
             role: role === null || role === void 0 ? void 0 : role.name
         };
         req.session.save();
-        return res.status(200).json({ message: 'Login successful' });
+        return res.status(200).json(req.session.user);
     }
     catch (error) {
         console.error(error);
