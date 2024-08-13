@@ -25,6 +25,11 @@ const contractSchema = new mongoose_1.default.Schema({
         type: Date,
         default: Date.now
     },
+    status: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected', 'sent'],
+        default: 'pending'
+    }
 });
 const Contract = mongoose_1.default.model('Contract', contractSchema);
 exports.default = Contract;

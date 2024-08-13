@@ -29,7 +29,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
         // Setup the session
         (req.session as any).user = {
-            id: existingUser._id,
+            _id: existingUser._id,
             email: existingUser.email,
             role: role?.name
         };

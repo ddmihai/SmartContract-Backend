@@ -25,7 +25,11 @@ const contractSchema = new mongoose.Schema({
         default: Date.now
     },
 
-
+    status: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected', 'sent'],
+        default: 'pending'
+    }
 });
 
 const Contract = mongoose.model('Contract', contractSchema);

@@ -36,7 +36,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         const role = yield role_model_1.default.findOne({ userId: existingUser._id });
         // Setup the session
         req.session.user = {
-            id: existingUser._id,
+            _id: existingUser._id,
             email: existingUser.email,
             role: role === null || role === void 0 ? void 0 : role.name
         };
