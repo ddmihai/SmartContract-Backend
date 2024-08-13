@@ -17,13 +17,7 @@ const invitationSchema = new mongoose.Schema({
         trim: true
     },
 
-    status: {
-        type: String,
-        enum: ['pending', 'accepted', 'rejected'],
-        default: 'pending'
-    },
-
-    createdAt: {
+    sharedDate: {
         type: Date,
         default: Date.now
     },

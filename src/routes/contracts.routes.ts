@@ -9,5 +9,6 @@ const contractsRouter = Router();
 // Router
 contractsRouter.post('/create', createContract);
 contractsRouter.get('/all-contracts', getAllContracts);
+contractsRouter.get('/', getAllContracts);
 
 export default contractsRouter;
