@@ -5,7 +5,10 @@ import userRouter from './src/routes/user.routes';
 import session from 'express-session';
 import MongoStore from 'connect-mongo'
 import invitationRouter from './src/routes/invitation.routes';
+import { engine } from 'express-handlebars';
 import contractsRouter from './src/routes/contracts.routes';
+import path from 'path';
+import { sendEmail } from './src/lib/nodemailer';
 config();
 
 
@@ -41,8 +44,23 @@ app.use(session({
 
 
 
+// Express Handlebars
+app.engine('handlebars', engine({
+    extname: '.handlebars',
+    defaultLayout: 'main',
+    layoutsDir: 'src/views/layouts'
+}));
+
+app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'src', 'views'));
+
+
+
+
+
 // home route
-app.get('/', (req, res) => res.status(200).send('Server online!'));
+app.get('/', (req, res) => res.status(200).json({ message: 'Welcome to contract manager' }));
+
 
 
 app.use('/api/v1', userRouter);

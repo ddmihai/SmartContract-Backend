@@ -16,12 +16,14 @@ const http_1 = __importDefault(require("http"));
 const app_1 = __importDefault(require("./app"));
 const databaseConnection_1 = require("./src/database/databaseConnection");
 const createAdmin_1 = __importDefault(require("./src/auto/createAdmin"));
+const checkNodemailerConnection_1 = require("./src/lib/checkNodemailerConnection");
 // port and create server
 const port = process.env.PORT || 3000;
 const server = http_1.default.createServer(app_1.default);
 // function that will start the server and will start other relevant function
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
+        yield (0, checkNodemailerConnection_1.checkNodemailerConnection)();
         yield (0, databaseConnection_1.connectDB)();
         yield (0, createAdmin_1.default)();
         server.listen(port, () => console.log(`Server is running on port ${port}`));
