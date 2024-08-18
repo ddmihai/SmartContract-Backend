@@ -8,7 +8,6 @@ import invitationRouter from './src/routes/invitation.routes';
 import { engine } from 'express-handlebars';
 import contractsRouter from './src/routes/contracts.routes';
 import path from 'path';
-import { sendEmail } from './src/lib/nodemailer';
 config();
 
 
@@ -17,7 +16,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' ? 'XXXXXXXXXXXXXXXXXXXXXXXXXXX' : 'http://localhost:3002',
+    origin: process.env.NODE_ENV === 'production' ? 'XXXXXXXXXXXXXXXXXXXXXXXXXXX' : 'http://localhost:3001',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
